@@ -7,4 +7,4 @@ interface TypographyProps {
 const CustomTypography = ({ variant, Text }: TypographyProps) => {
   return <Typography variant={variant}>{Text}</Typography>;
 };
-export default CustomTypography  ;
+export default CustomTypography;
