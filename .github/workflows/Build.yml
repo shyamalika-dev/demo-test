@@ -7,7 +7,7 @@ on:
     paths:
       - "sonar-cloud/**"
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened]
 
 jobs:
   sonarcloud:
@@ -20,10 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for better analysis relevance
+          fetch-depth: 0 # Fetch full history for correct analysis context
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
+
       - name: Run Tests
         run: npm test
 
@@ -31,16 +32,26 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          projectBaseDir: ./sonar-cloud # Specify the correct directory
+          projectBaseDir: ./sonar-cloud
           args: >
-            -Dsonar.branch.name=${{ github.ref_name }}
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
-            -Dsonar.branch.name=${{ github.head_ref }}
+            -Dsonar.pullrequest.branch=${{ github.head_ref }}
             -Dsonar.pullrequest.base=${{ github.base_ref }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           ACTIONS_STEP_DEBUG: true
+
+      - name: SonarCloud Scan for Branch
+        if: github.event_name == 'push'
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ./sonar-cloud
+          args: >
+            -Dsonar.branch.name=${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   branchAnalysis:
     if: github.event.pull_request.merged == true
@@ -52,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for better analysis relevance
+          fetch-depth: 0 # Fetch full history for better analysis
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
@@ -60,12 +71,12 @@ jobs:
       - name: Run Tests
         run: npm test
 
-      - name: SonarCloud Scan for Main Branch
+      - name: SonarCloud Scan for Main Branch after PR merge
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          projectBaseDir: ./sonar-cloud # Specify the correct directory
+          projectBaseDir: ./sonar-cloud
           args: >
             -Dsonar.branch.name=main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
