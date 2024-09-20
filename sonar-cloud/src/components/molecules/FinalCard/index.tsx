@@ -6,7 +6,7 @@ import Logo from "../../atoms/Logo/index";
 const StyledCard = styled(Card)`
   width: 300px;
   height: 100px;
-  border: 2px solid grey;
+  border: 3px solid grey;
 `;
 const FinalCard = () => {
   return (
