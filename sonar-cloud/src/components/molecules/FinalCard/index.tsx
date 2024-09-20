@@ -12,7 +12,7 @@ const FinalCard = () => {
   return (
     <StyledCard>
       <CustomTypography variant="body1" Text="Hello iam shyamalika" />
-      <Logo src="logo192.png" alt="alternative logo text" />
+      <Logo src="logo192.png" alt="alternate logo text" />
     </StyledCard>
   );
 };
