@@ -23,9 +23,9 @@
   "scripts": {
   "start": "react-scripts start",
   "build": "react-scripts build",
-  "pass": "echo 'Pass script running...'",
+  "pass": "react-scripts pass",
   "eject": "react-scripts eject",
-  "no-test": "echo 'No tests configured'"
+  "no-test": "react-scripts no-test"
 },
 
   "eslintConfig": {
