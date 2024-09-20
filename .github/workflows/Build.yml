@@ -33,12 +33,14 @@ jobs:
         with:
           projectBaseDir: ./sonar-cloud # Specify the correct directory
           args: >
+            -Dsonar.branch.name=${{ github.ref_name }}
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
             -Dsonar.branch.name=${{ github.head_ref }}
             -Dsonar.pullrequest.base=${{ github.base_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          ACTIONS_STEP_DEBUG: true
 
   branchAnalysis:
     if: github.event.pull_request.merged == true
