@@ -7,7 +7,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.0",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.108",
@@ -23,9 +23,8 @@
   "scripts": {
   "start": "react-scripts start",
   "build": "react-scripts build",
-  "pass": "react-scripts pass",
-  "eject": "react-scripts eject",
-  "no-test": "react-scripts no-test"
+  "test": "react-scripts test",  
+  "eject": "react-scripts eject"
 },
 
   "eslintConfig": {
