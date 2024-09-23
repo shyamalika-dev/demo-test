@@ -1,14 +1,12 @@
 import React from "react";
-
-import "./App.css";
-import FinalCard from "./components/molecules/FinalCard";
-
-function App() {
+import BasicComponent from "./BasicComponent";
+const App = () => {
   return (
-    <div className="App">
-      <FinalCard />
+    <div>
+      <h1>Welcome to My App</h1>
+      <BasicComponent name="Shyamalika" />
     </div>
   );
-}
+};
 
 export default App;
