@@ -1,12 +1,11 @@
-import React from "react";
-
 import "./App.css";
-import FinalCard from "./components/molecules/FinalCard";
+
+import SidebarPage from "./components/pages/SidebarPage/Index";
 
 function App() {
   return (
-    <div className="App">
-      <FinalCard />
+    <div className="App" data-testid="sidebar-page">
+      <SidebarPage />
     </div>
   );
 }
