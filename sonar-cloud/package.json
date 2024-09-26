@@ -51,7 +51,14 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/src/reportWebVitals.ts",
-      "<rootDir>/src/index.tsx"
+      "<rootDir>/src/index.tsx",
+      "<rootDir>/src/theme.ts"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*/tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
 }

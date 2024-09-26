@@ -1,12 +1,13 @@
-import React from "react";
-import BasicComponent from "./BasicComponent";
-const App = () => {
+import "./App.css";
+
+import SidebarPage from "./components/pages/SidebarPage/Index";
+
+function App() {
   return (
-    <div>
-      <h1>Welcome to My App</h1>
-      <BasicComponent name="Shyamalika" />
+    <div className="App" data-testid="sidebar-page">
+      <SidebarPage />
     </div>
   );
-};
+}
 
 export default App;
